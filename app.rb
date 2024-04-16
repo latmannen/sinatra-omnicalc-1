@@ -28,7 +28,7 @@ get("/square_root/results") do
   erb(:square_root_results)
 end
 
-#Payment Section. Follow the rake grade to see what to do next. mostly formatting. 
+#Payment Section. 
 get("/payment/new") do
   erb(:payment)
 end
@@ -40,4 +40,18 @@ get("/payment/results") do
   
   @the_result = (@apr/100/12 * @pv)/(1-(1+@apr/100/12)** (-1.0 * @years*12))
   erb(:payment_results)
+end
+
+#Random Section
+get("/random/new") do
+  erb(:random)
+end
+
+get("/random/results") do
+  @min = params.fetch("min").to_f
+  @max = params.fetch("max").to_f
+  
+  @the_result = rand(@min..@max)
+  
+  erb(:random_results)
 end
